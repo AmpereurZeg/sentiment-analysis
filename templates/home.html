@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Application IA</title>
+</head>
+<script>
+function myFunction() {
+var text1= $('#text1').val();
+  $.ajax({
+              url: "/join",
+              type: "POST",
+              data: {text1:text1}
+          }).done(function(response) {
+            var html= "<br><p> <b> RESULT : <b><p>";
+            response =response.result;
+                 $.each(response,function(key,val){
+                 console.log(val);
+                    html+="<p>"+val+"<p>"
+                });
+                html +="<br>";
+                $(".show-data").append(html);
+            });
+};
+  </script>
+<body id="back">
+  <header><h1 style="text-align: center;">WELCOME TO IMdB REVIEWS CLASSIFICATION</h1></header>
+    <p style="text-align:center;"><img src="/static/images/film.jpg" alt="" style="height: 300px; width:300px;"><br>
+      <input type="text" id="text1" name="text1">
+      <button id="clicked" onclick="myFunction()">Commenter</button></p>
+    <div class="show-data" style="text-align: center; background-color:aquamarine;">
+    </div>
+</body>
+</html>
